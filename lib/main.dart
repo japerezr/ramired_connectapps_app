@@ -1,6 +1,5 @@
 import 'package:ramired_connectapps_app/app.dart';
 import 'package:ramired_connectapps_app/helpers/preferences_helper.dart';
-import 'package:ramired_connectapps_app/views/auth_view.dart';
 import 'package:ramired_connectapps_app/views/busqueda/busquedas_view.dart';
 import 'package:ramired_connectapps_app/views/login_view.dart';
 import 'package:flutter/material.dart';

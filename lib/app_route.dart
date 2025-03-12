@@ -5,7 +5,6 @@ import 'package:ramired_connectapps_app/views/busqueda/busquedas_view.dart';
 import 'package:flutter/material.dart';
 
 import 'menu.dart';
-import 'views/auth_view.dart';
 import 'views/login_view.dart';
 
 class AppRoute {
@@ -20,12 +19,6 @@ class AppRoute {
       route: 'Login',
       icon: Icons.security,
       screen: const LoginPage(),
-    ),
-    AppRouteItem(
-      label: 'Auth',
-      route: 'Auth',
-      icon: Icons.security,
-      screen: const AuthPage(),
     ),
     AppRouteItem(
       label: 'Inicio',
