@@ -16,14 +16,14 @@ class BconnectAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text('BConnect Flutter App'),
+      title: const Text('SABBAT'),
       actions: [
         IconButton(
           padding: const EdgeInsets.all(0),
           icon: userInitials.isEmpty
               ? Container()
               : CircleAvatar(
-                  backgroundColor: Colors.deepOrangeAccent,
+                  backgroundColor: Colors.cyanAccent,
                   radius: 18,
                   child: Text(
                     userInitials,

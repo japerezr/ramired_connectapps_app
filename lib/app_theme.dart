@@ -4,9 +4,9 @@ import 'helpers/fonts_helper.dart';
 
 class AppTheme {
   static const double globalElevation = 0;
-  static const primaryColor = Color(0xFFF37733);
+  static const primaryColor = Color.fromARGB(255, 255, 255, 255);
   static const secundaryColor = Color(0xFF54585A);
-  static const primaryColorTxt = Color.fromARGB(100, 0, 0, 0);
+  static const primaryColorTxt = Color.fromARGB(99, 0, 0, 0);
   static const secundaryColorTxt = Color.fromARGB(43, 0, 0, 0);
   static const inputFillColor = Color.fromRGBO(242, 242, 242, 1);
   static const inputBorderFillColor = Color(0xFF9FA1A4);

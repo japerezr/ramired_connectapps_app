@@ -6,10 +6,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 class App extends StatelessWidget {
   final Widget? home;
-  final String? token;
 
   const App(
-      {this.home, this.token, Key? key, required TransitionBuilder builder})
+      {this.home, Key? key, required TransitionBuilder builder})
       : super(key: key);
 
   @override

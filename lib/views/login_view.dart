@@ -21,10 +21,11 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('BConnect Flutter App'),
+        title: const Text("RamiRed - Novel's Cabina & Spa"),
         elevation: 2,
+        backgroundColor: Colors.blue,
       ),
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: SizedBox(

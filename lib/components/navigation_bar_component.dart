@@ -1,7 +1,7 @@
 import 'package:ramired_connectapps_app/app_route.dart';
 import 'package:ramired_connectapps_app/env.dart';
 import 'package:ramired_connectapps_app/helpers/preferences_helper.dart';
-import 'package:ramired_connectapps_app/views/busqueda/busquedas_view.dart';
+import 'package:ramired_connectapps_app/views/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -48,7 +48,7 @@ class _NavigationBarComponenetState extends State<NavigationBarComponenet> {
           context,
           PageRouteBuilder(
             pageBuilder: (context, animation1, animation2) =>
-                const BusquedasPage(),
+                const LoginPage(),
             transitionDuration: Duration.zero,
             reverseTransitionDuration: Duration.zero,
           ),

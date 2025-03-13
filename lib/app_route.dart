@@ -1,7 +1,5 @@
 import 'package:ramired_connectapps_app/models/bc_colaborador.dart';
 import 'package:ramired_connectapps_app/models/bc_user.dart';
-import 'package:ramired_connectapps_app/views/account/account_view.dart';
-import 'package:ramired_connectapps_app/views/busqueda/busquedas_view.dart';
 import 'package:flutter/material.dart';
 
 import 'menu.dart';
@@ -20,18 +18,7 @@ class AppRoute {
       icon: Icons.security,
       screen: const LoginPage(),
     ),
-    AppRouteItem(
-      label: 'Inicio',
-      route: 'Inicio',
-      icon: Icons.edit_note,
-      screen: const BusquedasPage(),
-    ),
-    AppRouteItem(
-      label: 'Cuenta',
-      route: 'Cuenta',
-      icon: Icons.account_circle,
-      screen: AccountPage(BCUser(), BCColaborador()),
-    ),
+
   ];
 
   static Map<String, Widget Function(BuildContext)> getRoutes() {
