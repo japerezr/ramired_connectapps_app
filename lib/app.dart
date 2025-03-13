@@ -1,6 +1,5 @@
-import 'package:ramired_connectapps_app/app_route.dart';
-import 'package:ramired_connectapps_app/app_theme.dart';
-import 'package:ramired_connectapps_app/views/login_view.dart';
+import '../../app_theme.dart';
+import '../../views/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -23,10 +22,9 @@ class App extends StatelessWidget {
       supportedLocales: const [
         Locale('es', 'es_mx'),
       ],
-      theme: AppTheme.lightTheme,
+      //theme: AppTheme.lightTheme,
       title: 'RamiRed APP',
       home: home ?? const LoginPage(),
-      routes: AppRoute.getRoutes(),
     );
   }
 }

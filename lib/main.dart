@@ -1,6 +1,6 @@
-import 'package:ramired_connectapps_app/app.dart';
-import 'package:ramired_connectapps_app/helpers/preferences_helper.dart';
-import 'package:ramired_connectapps_app/views/login_view.dart';
+import '../../app.dart';
+import '../../helpers/preferences_helper.dart';
+import '../../views/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 

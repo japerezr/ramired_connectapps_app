@@ -1,7 +1,6 @@
-import 'package:ramired_connectapps_app/app_route.dart';
-import 'package:ramired_connectapps_app/env.dart';
-import 'package:ramired_connectapps_app/helpers/preferences_helper.dart';
-import 'package:ramired_connectapps_app/views/login_view.dart';
+import '../../env.dart';
+import '../../helpers/preferences_helper.dart';
+import '../../views/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -65,7 +64,7 @@ class _NavigationBarComponenetState extends State<NavigationBarComponenet> {
   Future<void> onSignOut(BuildContext context) async {
     await removePreferences();
     if (!mounted) return;
-    await launchWhatsApp(context);
+
   }
 
   Future<void> removePreferences() async {
@@ -76,16 +75,4 @@ class _NavigationBarComponenetState extends State<NavigationBarComponenet> {
     await PreferencesHelper.remove('colaborador');
   }
 
-  Future<void> launchWhatsApp(
-    BuildContext context,
-  ) async {
-    String message = '';
-    final url = Uri.parse('https://wa.me/$whatsappNumber?text=$message');
-    if (!await launchUrl(url)) {
-      throw Exception('Could not launch url');
-    }
-    if (!mounted) return;
-    await Navigator.pushNamedAndRemoveUntil(
-        context, AppRoute.loginRoute, (route) => false);
-  }
 }
