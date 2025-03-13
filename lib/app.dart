@@ -24,7 +24,7 @@ class App extends StatelessWidget {
         Locale('es', 'es_mx'),
       ],
       theme: AppTheme.lightTheme,
-      title: 'BConnect Flutter Apps',
+      title: 'RamiRed APP',
       home: home ?? const LoginPage(),
       routes: AppRoute.getRoutes(),
     );
