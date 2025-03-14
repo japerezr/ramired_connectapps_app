@@ -52,13 +52,12 @@ class _AppbarState extends State<Appbar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.white,
-      surfaceTintColor: Colors.white,
-      shadowColor: Colors.grey[200],
+      backgroundColor: Colors.blue,
+      shadowColor: Colors.black,
       title: const Text(
-        'BCONNECT CONVIVENCIAS',
+        "NOVEL'S - CABINA & SPA",
         style: TextStyle(
-          color: Color(0xFFF37733),
+          color: Colors.white,
           fontWeight: FontWeight.bold,
           fontSize: 15,
         ),
@@ -68,7 +67,7 @@ class _AppbarState extends State<Appbar> {
         Center(
           child: Text(
             user?.rrUser ?? '',
-            style: TextStyle(color: Colors.grey[700], fontSize: 14),
+            style: TextStyle(color: Colors.white, fontSize: 14),
           ),
         ),
         Padding(

@@ -19,7 +19,7 @@ class AppTheme {
       color: primaryColor,
       fontFamily: FontsHelper.RobotoRegular,
       fontWeight: FontWeight.w700);
-  static const TextStyle bConnect = TextStyle(
+  static const TextStyle connect = TextStyle(
       fontSize: 30,
       color: Color(0xFF9FA1A4),
       fontFamily: FontsHelper.RobotoBold);
