@@ -4,6 +4,8 @@ import '../models/_models.dart';
 import '../helpers/_helpers.dart';
 import 'dart:convert';
 import '../../views/_views.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '../env.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,6 +18,8 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _userController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   Administradores? user;
+  String whatsappNumber = Environment().WHATSAPP_NUMBER;
+  String facebookUrl = Environment().FACEBOOK_URL;
 
   Future<void> login() async {
     try{
@@ -47,6 +51,19 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+  Future<void> _launchUrlW() async {
+    final url = Uri.parse('https://wa.me/%2b$whatsappNumber');
+    if (!await launchUrl(url)) {
+      throw Exception('X Could not launch url');
+    }
+  }
+
+  Future<void> _launchUrlF() async {
+    final url = Uri.parse(facebookUrl);
+    if (!await launchUrl(url)) {
+      throw Exception('X Could not launch url');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -155,14 +172,14 @@ class _LoginPageState extends State<LoginPage> {
                             IconButton(
                               icon: Icon(Icons.facebook, color: Colors.blue, size: 40),
                               onPressed: () {
-                                // Lógica para Facebook
+                                _launchUrlF();
                               },
                             ),
                             const SizedBox(width: 20),
                             IconButton(
                               icon: Image.asset('assets/whatsapp.png', width: 40, height: 40),
                               onPressed: () {
-                                
+                                _launchUrlW();
                               },
                             ),
                           ],
