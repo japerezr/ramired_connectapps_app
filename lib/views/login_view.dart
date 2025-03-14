@@ -17,25 +17,34 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _userController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool _isLoading = false;
   Administradores? user;
   String whatsappNumber = Environment().WHATSAPP_NUMBER;
   String facebookUrl = Environment().FACEBOOK_URL;
 
   Future<void> login() async {
     try{
+    setState(() {
+      _isLoading = true;
+    });
     user = await RamiRedService().getAdministrador(_userController.text, _passwordController.text);
-    
     if(user != null){
       await PreferencesHelper.setString('user', jsonEncode(user?.toJson()));
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      backgroundColor: Colors.black,
-      duration: Duration(seconds: 3),
-      content: Text("Iniciando Sesión...")));
+      //ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      //backgroundColor: Colors.black,
+      //duration: Duration(seconds: 3),
+      //content: Text("Iniciando Sesión...")));
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => HomePage()),
       );
+      setState(() {
+        _isLoading = false;
+      });
     }else{
+      setState(() {
+        _isLoading = false;
+      });
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
       backgroundColor: Colors.black,
       duration: Duration(seconds: 3),
@@ -48,6 +57,9 @@ class _LoginPageState extends State<LoginPage> {
       duration: Duration(seconds: 3),
       content: Text(
            "Ocurrió un error. Intente de nuevo más tarde.")));
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 
@@ -140,29 +152,43 @@ class _LoginPageState extends State<LoginPage> {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () {
-                              login();
-                            },
+                            onPressed: _isLoading ? null : login,
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue,
                               foregroundColor: Colors.white,
                             ),
-                            child: const Text('Iniciar'),
+                            child: _isLoading
+                                ? SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                    child: CircularProgressIndicator(
+                                      color: Colors.white,
+                                      strokeWidth: 2,
+                                    ),
+                                  )
+                                : const Text('Iniciar'),
                           ),
                         ),
                         const SizedBox(height: 10),
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () {
-                              // Lógica de registro aquí
-                            },
+                            onPressed: _isLoading ? null : login,
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
+                              backgroundColor: const Color.fromARGB(255, 255, 255, 255),
                               foregroundColor: Colors.black,
                               side: BorderSide(color: Colors.black),
                             ),
-                            child: const Text('Registrarse'),
+                            child: _isLoading
+                                ? SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                    child: CircularProgressIndicator(
+                                      color: Colors.black,
+                                      strokeWidth: 2,
+                                    ),
+                                  )
+                                : const Text('Registrarse'),
                           ),
                         ),
                         const SizedBox(height: 20),
