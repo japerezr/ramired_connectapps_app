@@ -15,6 +15,15 @@ void main() async {
 }
 
 Future<Widget?> initApp() async {
-  return const LoginPage();
+  try {
+    final jsonAdministrador = await PreferencesHelper.getString('user');
+    if (jsonAdministrador != null) {
+      return const HomePage();
+    }else{
+      return const LoginPage();
+    }
+  } catch (ex) {
+    print('X Error: $ex');
+  }
 }
 

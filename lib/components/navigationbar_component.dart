@@ -30,9 +30,9 @@ class _NavigationBarState extends State<NavigationBars> {
         ),
       ],
       currentIndex: widget.selectedNavBarIndex,
-      backgroundColor: Colors.white,
-      selectedItemColor: Colors.amber[800],
-      unselectedItemColor: Colors.grey,
+      backgroundColor: Colors.blue,
+      selectedItemColor: Colors.white,
+      unselectedItemColor: const Color.fromARGB(255, 212, 212, 212),
       showUnselectedLabels: true,
       type: BottomNavigationBarType.fixed,
       onTap: (index) => onNavBarTapped(context, index),
@@ -47,7 +47,7 @@ class _NavigationBarState extends State<NavigationBars> {
           context,
           PageRouteBuilder(
             pageBuilder: (context, animation1, animation2) =>
-                const LoginPage(),
+                const HomePage(),
             transitionDuration: Duration.zero,
             reverseTransitionDuration: Duration.zero,
           ),
@@ -55,6 +55,16 @@ class _NavigationBarState extends State<NavigationBars> {
         );
         break;
       case 1:
+        Navigator.pushAndRemoveUntil(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) =>
+                const LoginPage(),
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
+          ),
+          (route) => false,
+        );
         onSignOut(context);
         break;
       default:
@@ -68,11 +78,7 @@ class _NavigationBarState extends State<NavigationBars> {
   }
 
   Future<void> removePreferences() async {
-    await PreferencesHelper.remove('userkey');
-    await PreferencesHelper.remove('token');
     await PreferencesHelper.remove('user');
-    await PreferencesHelper.remove('firebase_user');
-    await PreferencesHelper.remove('colaborador');
   }
 
 }
