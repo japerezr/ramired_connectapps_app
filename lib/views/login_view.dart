@@ -3,6 +3,7 @@ import '../../services/_services.dart';
 import '../models/_models.dart';
 import '../helpers/_helpers.dart';
 import 'dart:convert';
+import '../../views/_views.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -26,6 +27,10 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: Colors.black,
       duration: Duration(seconds: 3),
       content: Text("Iniciando Sesión...")));
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
     }else{
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
       backgroundColor: Colors.black,

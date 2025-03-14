@@ -1,5 +1,5 @@
 import '../../app_theme.dart';
-import '../../views/login_view.dart';
+import '../../views/_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 

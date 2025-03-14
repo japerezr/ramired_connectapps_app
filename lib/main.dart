@@ -1,6 +1,6 @@
 import '../../app.dart';
 import '../../helpers/preferences_helper.dart';
-import '../../views/login_view.dart';
+import '../../views/_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 

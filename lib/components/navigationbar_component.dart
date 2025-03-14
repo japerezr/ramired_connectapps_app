@@ -1,19 +1,19 @@
 import '../../env.dart';
 import '../../helpers/preferences_helper.dart';
-import '../../views/login_view.dart';
+import '../../views/_views.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class NavigationBarComponenet extends StatefulWidget {
+class NavigationBars extends StatefulWidget {
   final int selectedNavBarIndex;
-  const NavigationBarComponenet(this.selectedNavBarIndex, {super.key});
+  const NavigationBars(this.selectedNavBarIndex, {super.key});
 
   @override
-  State<NavigationBarComponenet> createState() =>
-      _NavigationBarComponenetState();
+  State<NavigationBars> createState() =>
+      _NavigationBarState();
 }
 
-class _NavigationBarComponenetState extends State<NavigationBarComponenet> {
+class _NavigationBarState extends State<NavigationBars> {
   String whatsappNumber = Environment().WHATSAPP_NUMBER;
 
   @override

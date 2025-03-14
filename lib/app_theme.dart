@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'helpers/fonts_helper.dart';
 
 class AppTheme {
