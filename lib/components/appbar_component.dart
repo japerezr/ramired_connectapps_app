@@ -128,14 +128,16 @@ class _AppbarState extends State<Appbar> {
             ),
           ),
           actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cerrar'),
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.blue, // Color del texto azul
-                backgroundColor: Colors.white, // Fondo blanco
+            SizedBox(
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  foregroundColor: Colors.white,
+                ),
+                child: const Text('Cerrar'),
               ),
             ),
           ],
