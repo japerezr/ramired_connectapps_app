@@ -9,8 +9,8 @@ class NavigationBars extends StatefulWidget {
   const NavigationBars(this.selectedNavBarIndex, {super.key});
 
   @override
-  State<NavigationBars> createState() =>
-      _NavigationBarState();
+  State<NavigationBars> createState() =>_NavigationBarState();
+  
 }
 
 class _NavigationBarState extends State<NavigationBars> {

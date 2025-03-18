@@ -6,6 +6,7 @@ import 'dart:convert';
 import '../../views/_views.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../env.dart';
+import '../../components/_components.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -75,6 +76,24 @@ class _LoginPageState extends State<LoginPage> {
     if (!await launchUrl(url)) {
       throw Exception('X Could not launch url');
     }
+  }
+
+  Future<void> onRegistered(BuildContext context) async {
+    await showModalBottomSheet<bool>(
+      context: context,
+      isScrollControlled: true,
+      enableDrag: false, // Deshabilita el cierre por deslizamiento
+      isDismissible: false, // Evita que se cierre tocando fuera del modal
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+      ),
+      builder: (BuildContext context) {
+        return FractionallySizedBox(
+          child: ActionDetailComponent(),
+        );
+      },
+    );
   }
 
   @override
@@ -173,7 +192,9 @@ class _LoginPageState extends State<LoginPage> {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: _isLoading ? null : login,
+                            onPressed: _isLoading
+                            ? null
+                            : () => onRegistered(context),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color.fromARGB(255, 255, 255, 255),
                               foregroundColor: Colors.black,
