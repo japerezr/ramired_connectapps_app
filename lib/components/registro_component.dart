@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../components/_components.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ActionDetailComponent extends StatefulWidget {
 
@@ -32,6 +33,7 @@ class _ActionDetailComponentState extends State<ActionDetailComponent> {
   String? _errorEmail;
   String? _errorUser;
   String? _errorPassword;
+    Uint8List? _imageBytes;
 
   void _validateInput() {
     setState(() {
@@ -43,6 +45,42 @@ class _ActionDetailComponentState extends State<ActionDetailComponent> {
       _errorUser = _controllerUser.text.isEmpty ? 'Este campo no puede estar vacío' : null;
       _errorPassword = _controllerPassword.text.isEmpty ? 'Este campo no puede estar vacío' : null;
     });
+  }
+
+  Future<void> _pickImage() async {
+      final picker = ImagePicker();
+      final ImageSource? source = await showModalBottomSheet<ImageSource>(
+        context: context,
+        builder: (BuildContext context) {
+          return SafeArea(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                ListTile(
+                  leading: const Icon(Icons.camera_alt),
+                  title: const Text('Cámara'),
+                  onTap: () => Navigator.of(context).pop(ImageSource.camera),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.photo_library),
+                  title: const Text('Galería'),
+                  onTap: () => Navigator.of(context).pop(ImageSource.gallery),
+                ),
+              ],
+            ),
+          );
+        },
+      );
+
+      if (source != null) {
+        final XFile? image = await picker.pickImage(source: source);
+        if (image != null) {
+          final bytes = await image.readAsBytes(); // Obtener los bytes de la imagen
+          setState(() {
+            _imageBytes = bytes; // Guardar los bytes en la variable
+          });
+        }
+      }
   }
 
   @override
@@ -210,6 +248,22 @@ class _ActionDetailComponentState extends State<ActionDetailComponent> {
               ),
             ),
             onChanged: (value) => _validateInput(),
+          ),
+          const SizedBox(height: 20),
+          DividerComponent(text: "Imagen"),
+          const SizedBox(height: 20),
+          Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Espaciado uniforme entre los elementos
+              children: [
+                ElevatedButton(
+                  onPressed: _pickImage,
+                  child: const Text('Seleccionar Imagen'),
+                ),
+                if (_imageBytes != null)
+                  Image.memory(_imageBytes!, width: 100, height: 100),
+              ],
+            ),
           ),
         ],
       ),
