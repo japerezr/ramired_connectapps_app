@@ -16,6 +16,8 @@ class Administradores {
   final String rrImagenId;
   final String rrImagenUrl;
   final String rrImageDecode;
+  final String rrServicios;
+  final String rrRoles;
 
   Administradores({
     required this.rrAdministradoresId,
@@ -32,6 +34,8 @@ class Administradores {
     required this.rrImagenId,
     required this.rrImagenUrl,
     required this.rrImageDecode,
+    required this.rrServicios,
+    required this.rrRoles,
   });
 
   factory Administradores.fromJson(Map<String, dynamic> json) {
@@ -50,6 +54,8 @@ class Administradores {
       rrImagenId: json['rr_imagenid'] ?? '',
       rrImagenUrl: json['rr_imagen_url'] ?? '',
       rrImageDecode: json['rr_imagedecode'] ?? '',
+      rrServicios: json['rr_servicios'] ?? '',
+      rrRoles: json['rr_roles'] ?? '',
     );
   }
 
@@ -69,6 +75,8 @@ class Administradores {
       'rr_imagenid': rrImagenId,
       'rr_imagen_url': rrImagenUrl,
       'rr_imagedecode': rrImageDecode,
+      'rr_servicios': rrServicios,
+      'rr_roles': rrRoles,
     };
   }
 }
