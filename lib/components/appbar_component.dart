@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 import '../../models/_models.dart';
 import '../../helpers/_helpers.dart';
+import '../../components/_components.dart';
 
 class Appbar extends StatefulWidget implements PreferredSizeWidget {
   final bool isDialog;
@@ -47,6 +48,24 @@ class _AppbarState extends State<Appbar> {
     } catch (ex) {
       print('X Error en initUser: $ex');
     }
+  }
+
+    Future<void> onRegistered(BuildContext context) async {
+    await showModalBottomSheet<bool>(
+      context: context,
+      isScrollControlled: true,
+      enableDrag: false, // Deshabilita el cierre por deslizamiento
+      isDismissible: false, // Evita que se cierre tocando fuera del modal
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+      ),
+      builder: (BuildContext context) {
+        return FractionallySizedBox(
+          child: RegistroComponent(),
+        );
+      },
+    );
   }
 
   @override

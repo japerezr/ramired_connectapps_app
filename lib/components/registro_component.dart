@@ -9,18 +9,18 @@ import '../../services/_services.dart';
 import 'package:uuid/uuid.dart';
 import 'dart:convert';
 
-class ActionDetailComponent extends StatefulWidget {
+class RegistroComponent extends StatefulWidget {
 
-  const ActionDetailComponent({
+  const RegistroComponent({
     Key? key,
   }) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _ActionDetailComponentState createState() => _ActionDetailComponentState();
+  _RegistroComponentState createState() => _RegistroComponentState();
 }
 
-class _ActionDetailComponentState extends State<ActionDetailComponent> {
+class _RegistroComponentState extends State<RegistroComponent> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerNombre = TextEditingController();
   final TextEditingController _controllerApellido = TextEditingController();
