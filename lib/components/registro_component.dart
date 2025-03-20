@@ -6,6 +6,8 @@ import 'package:ramired_connectapps_app/models/administradores.dart';
 import '../../components/_components.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../services/_services.dart';
+import 'package:uuid/uuid.dart';
+import 'dart:convert';
 
 class ActionDetailComponent extends StatefulWidget {
 
@@ -35,6 +37,7 @@ class _ActionDetailComponentState extends State<ActionDetailComponent> {
   String? _errorEmail;
   String? _errorUser;
   String? _errorPassword;
+  String? imageBase64;
   Uint8List? imageBytes;
   bool _isLoading = false;
   postAdministradores? data;
@@ -79,9 +82,11 @@ class _ActionDetailComponentState extends State<ActionDetailComponent> {
       if (source != null) {
         final XFile? image = await picker.pickImage(source: source);
         if (image != null) {
-          final bytes = await image.readAsBytes(); // Obtener los bytes de la imagen
+          final bytes = await image.readAsBytes();
+          final base64Image = base64Encode(bytes);
           setState(() {
-            imageBytes = bytes; // Guardar los bytes en la variable
+            imageBytes = bytes;
+            imageBase64 = base64Image;
           });
         }
       }
@@ -90,6 +95,7 @@ class _ActionDetailComponentState extends State<ActionDetailComponent> {
   Future<void> _clearImage()async {
     setState(() {
       imageBytes = null;
+      imageBase64 = null;
     });
   }
 
@@ -136,6 +142,7 @@ Widget build(BuildContext context) {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             form(),
+                            const SizedBox(height: 100),
                           ],
                         ),
                       ),
@@ -324,19 +331,40 @@ Widget build(BuildContext context) {
                       ),
                   ],
                 ),
-              )
+              ),
+
         ],
       ),
     );
   }
 
   Future<void> save() async {
+
+    _validateInput();
+
+    if (_errorNombre != null || _errorApellido != null ||
+        _errorDomicilio != null || _errorTelefono != null ||
+        _errorEmail != null || _errorUser != null ||
+        _errorPassword != null) 
+    {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        backgroundColor: Colors.red,
+        duration: Duration(seconds: 3),
+        content: Text("Por favor, complete todos los campos correctamente."),
+      ));
+      return;
+    }
+
     try{
     setState(() {
       _isLoading = true;
     });
+
+    var uuid = Uuid();
+    String guid = uuid.v4();
+
     data = postAdministradores(
-        rrAdministradoresId: null,
+        rrAdministradoresId: guid,
         rrNombre: _controllerNombre.text,
         rrApellido: _controllerApellido.text,
         rrDomicilio: _controllerDomicilio.text,
@@ -344,13 +372,13 @@ Widget build(BuildContext context) {
         rrCorreoElectronico: _controllerEmail.text,
         rrUser: _controllerUser.text,
         rrPassword: _controllerPassword.text,
-        rrImageDecode: imageBytes,
+        rrImageDecode: imageBase64,
         rrServicios: "ALL",
         rrRoles: "Usuario" 
     );
 
     final result = await RamiRedService().saveUser(data!);
-      if(result != null){
+      if (result != null) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         backgroundColor: Colors.black,
         duration: Duration(seconds: 3),

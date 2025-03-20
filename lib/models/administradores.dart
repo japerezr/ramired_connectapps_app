@@ -82,9 +82,7 @@ class postAdministradores {
   String? rrCorreoElectronico;
   String? rrUser;
   String? rrPassword;
-  String? rrImagenId;
-  String? rrImagenUrl;
-  Uint8List? rrImageDecode;
+  String? rrImageDecode;
   String? rrServicios;
   String? rrRoles;
 

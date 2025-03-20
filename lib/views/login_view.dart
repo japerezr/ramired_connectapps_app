@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
     setState(() {
       _isLoading = true;
     });
-    user = await RamiRedService().getAdministrador(_userController.text, _passwordController.text);
+    user = await RamiRedService().loginAdministrador(_userController.text, _passwordController.text);
     if(user != null){
       await PreferencesHelper.setString('user', jsonEncode(user?.toJson()));
       //ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

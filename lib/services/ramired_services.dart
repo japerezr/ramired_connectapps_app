@@ -8,11 +8,11 @@ class RamiRedService {
   String? token;
   String apiUrl = Environment().API;
 
-  Future<Administradores?> getAdministrador(String user, String password) async {
+  Future<Administradores?> loginAdministrador(String user, String password) async {
     try {
       Administradores? object;
       final response = await http.get(
-        Uri.parse('$apiUrl/auth/getAdministrador?user=$user&password=$password'),
+        Uri.parse('$apiUrl/auth/loginAdministrador?user=$user&password=$password'),
         headers: {'Content-Type': 'application/json; charset=UTF-8'},
       );
       if (response.statusCode == 200) {
@@ -25,18 +25,21 @@ class RamiRedService {
     }
   }
 
-    Future<postAdministradores?> saveUser(postAdministradores data) async {
+    Future<String?> saveUser(postAdministradores data) async {
     try {
-      postAdministradores? object;
-      final response = await http.post(Uri.parse('$apiUrl/auth/registerAdministrador'),
-          body: jsonEncode(data.toJson()),
-          headers: {
-            "Content-Type": "application/json", 
-            "Accept": "application/json"
-          },);
+      String? object;
+      final jsonData = jsonEncode(data.toJson());
+      final response = await http.post(
+        Uri.parse('$apiUrl/auth/registerAdministrador'),
+        body: jsonData,
+        headers: {
+          "Content-Type": "application/json", 
+          "Accept": "application/json"
+        },
+      );
       if (response.statusCode == 200) {
-        final result = jsonDecode(response.body);
-        object = postAdministradores.fromJson(result);
+          final String responseBody = response.body;
+          object = responseBody;
       }
       return object;
     } catch (e) {
