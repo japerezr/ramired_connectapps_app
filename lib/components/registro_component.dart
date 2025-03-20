@@ -2,8 +2,10 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ramired_connectapps_app/models/administradores.dart';
 import '../../components/_components.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../services/_services.dart';
 
 class ActionDetailComponent extends StatefulWidget {
 
@@ -33,7 +35,9 @@ class _ActionDetailComponentState extends State<ActionDetailComponent> {
   String? _errorEmail;
   String? _errorUser;
   String? _errorPassword;
-    Uint8List? _imageBytes;
+  Uint8List? imageBytes;
+  bool _isLoading = false;
+  postAdministradores? data;
 
   void _validateInput() {
     setState(() {
@@ -77,80 +81,105 @@ class _ActionDetailComponentState extends State<ActionDetailComponent> {
         if (image != null) {
           final bytes = await image.readAsBytes(); // Obtener los bytes de la imagen
           setState(() {
-            _imageBytes = bytes; // Guardar los bytes en la variable
+            imageBytes = bytes; // Guardar los bytes en la variable
           });
         }
       }
   }
+  
+  Future<void> _clearImage()async {
+    setState(() {
+      imageBytes = null;
+    });
+  }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Stack(
-        children: [
-          Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    backgroundColor: Colors.transparent,
+    body: Stack(
+      children: [
+        Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Flexible(
+                    child: Text(
+                      'Registrar Usuario',
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold),
+                      overflow: TextOverflow.ellipsis,
+                      softWrap: true,
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: const Icon(Icons.close)),
+                ],
+              ),
+            ),
+            const Divider(height: 0.5),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
                   children: [
-                    Flexible(
-                      child: Text(
-                        'Registrar Usuario',
-                        style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
-                        overflow: TextOverflow.ellipsis,
-                        softWrap: true,
+                    Form(
+                      key: _formKey,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 0, horizontal: 10),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            form(),
+                          ],
+                        ),
                       ),
                     ),
-                    IconButton(
-                        onPressed: () => Navigator.pop(context),
-                        icon: const Icon(Icons.close)),
                   ],
                 ),
               ),
-              const Divider(height: 0.5),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-
-                         Form(
-                          key: _formKey,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 0, horizontal: 10),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                form(),
-                              ],
-                            ),
-                          ),
-                        ),
-                    ],
+            ),
+          ],
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Card(
+            margin: const EdgeInsets.all(0),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: _isLoading ? null : save,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black,
+                    foregroundColor: Colors.white,
                   ),
+                  child: _isLoading
+                      ? SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                            strokeWidth: 2,
+                          ),
+                        )
+                      : const Text('Guardar'),
                 ),
-              ),
-            ],
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Card(
-              margin: const EdgeInsets.all(0), // Margen del Card
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
-                child:null,
               ),
             ),
           ),
-        ],
-      ),
-    );
-  }
+        ),
+      ],
+    ),
+  );
+}
+
 
   Widget form() {
     return Padding(
@@ -253,25 +282,98 @@ class _ActionDetailComponentState extends State<ActionDetailComponent> {
           DividerComponent(text: "Imagen"),
           const SizedBox(height: 20),
           Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Espaciado uniforme entre los elementos
-              children: [
-                ElevatedButton(
-                  onPressed: _pickImage,
-                  child: const Text('Seleccionar Imagen'),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      onPressed: _pickImage,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        foregroundColor: Colors.white,
+                      ),
+                      child: const Text('Seleccionar Imagen'),
+                    ),
+                    if (imageBytes != null)
+                      Stack(
+                        alignment: Alignment.topRight,
+                        children: [
+                          Container(
+                            width: 100,
+                            height: 100,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(25),
+                              child: Image.memory(imageBytes!, fit: BoxFit.cover),
+                            ),
+                          ),
+                          Positioned(
+                            top: -2,
+                            right: -2,
+                            child: GestureDetector(
+                              onTap: _clearImage,
+                              child: Container(
+                                padding: const EdgeInsets.all(4),
+                                decoration: BoxDecoration(
+                                  color: Colors.red,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const Icon(Icons.close, color: Colors.white, size: 16),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                  ],
                 ),
-                if (_imageBytes != null)
-                  Image.memory(_imageBytes!, width: 100, height: 100),
-              ],
-            ),
-          ),
+              )
         ],
       ),
     );
   }
-  
 
-  
-  
+  Future<void> save() async {
+    try{
+    setState(() {
+      _isLoading = true;
+    });
+    data = postAdministradores(
+        rrAdministradoresId: null,
+        rrNombre: _controllerNombre.text,
+        rrApellido: _controllerApellido.text,
+        rrDomicilio: _controllerDomicilio.text,
+        rrTelefono: _controllerTelefono.text,
+        rrCorreoElectronico: _controllerEmail.text,
+        rrUser: _controllerUser.text,
+        rrPassword: _controllerPassword.text,
+        rrImageDecode: imageBytes,
+        rrServicios: "ALL",
+        rrRoles: "Usuario" 
+    );
+
+    final result = await RamiRedService().saveUser(data!);
+      if(result != null){
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        backgroundColor: Colors.black,
+        duration: Duration(seconds: 3),
+        content: Text("Registrando Usuario...")));
+        Navigator.pop(context);
+        setState(() {
+          _isLoading = false;
+        });
+      }else{
+        setState(() {
+        _isLoading = false;
+      });
+      }
+    }catch(ex){
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      backgroundColor: Colors.red,
+      duration: Duration(seconds: 3),
+      content: Text(
+           "Ocurrió un error. Intente de nuevo más tarde.")));
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
 
 }

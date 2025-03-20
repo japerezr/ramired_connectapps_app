@@ -9,8 +9,6 @@ class Administradores {
   final String rrDomicilio;
   final String rrTelefono;
   final String rrCorreoElectronico;
-  final int rrRol;
-  final String rrRolName;
   final String rrUser;
   final String rrPassword;
   final String rrImagenId;
@@ -27,8 +25,6 @@ class Administradores {
     required this.rrDomicilio,
     required this.rrTelefono,
     required this.rrCorreoElectronico,
-    required this.rrRol,
-    required this.rrRolName,
     required this.rrUser,
     required this.rrPassword,
     required this.rrImagenId,
@@ -47,8 +43,6 @@ class Administradores {
       rrDomicilio: json['rr_domicilio'] ?? '',
       rrTelefono: json['rr_telefono'] ?? '',
       rrCorreoElectronico: json['rr_correoelectronico'] ?? '',
-      rrRol: json['rr_rol'] ?? 0,
-      rrRolName: json['rr_rolname'] ?? '',
       rrUser: json['rr_user'] ?? '',
       rrPassword: json['rr_password'] ?? '',
       rrImagenId: json['rr_imagenid'] ?? '',
@@ -68,12 +62,72 @@ class Administradores {
       'rr_domicilio': rrDomicilio,
       'rr_telefono': rrTelefono,
       'rr_correoelectronico': rrCorreoElectronico,
-      'rr_rol': rrRol,
-      'rr_rolname': rrRolName,
       'rr_user': rrUser,
       'rr_password': rrPassword,
       'rr_imagenid': rrImagenId,
       'rr_imagen_url': rrImagenUrl,
+      'rr_imagedecode': rrImageDecode,
+      'rr_servicios': rrServicios,
+      'rr_roles': rrRoles,
+    };
+  }
+}
+
+class postAdministradores {
+  String? rrAdministradoresId;
+  String? rrNombre;
+  String? rrApellido;
+  String? rrDomicilio;
+  String? rrTelefono;
+  String? rrCorreoElectronico;
+  String? rrUser;
+  String? rrPassword;
+  String? rrImagenId;
+  String? rrImagenUrl;
+  Uint8List? rrImageDecode;
+  String? rrServicios;
+  String? rrRoles;
+
+  postAdministradores({
+    this.rrAdministradoresId,
+    this.rrNombre,
+    this.rrApellido,
+    this.rrDomicilio,
+    this.rrTelefono,
+    this.rrCorreoElectronico,
+    this.rrUser,
+    this.rrPassword,
+    this.rrImageDecode,
+    this.rrServicios,
+    this.rrRoles,
+  });
+
+  factory postAdministradores.fromJson(Map<String, dynamic> json) {
+    return postAdministradores(
+      rrAdministradoresId: json['rr_administradoresid'] ?? '',
+      rrNombre: json['rr_nombre'] ?? '',
+      rrApellido: json['rr_apellido'] ?? '',
+      rrDomicilio: json['rr_domicilio'] ?? '',
+      rrTelefono: json['rr_telefono'] ?? '',
+      rrCorreoElectronico: json['rr_correoelectronico'] ?? '',
+      rrUser: json['rr_user'] ?? '',
+      rrPassword: json['rr_password'] ?? '',
+      rrImageDecode: json['rr_imagedecode'] ?? '',
+      rrServicios: json['rr_servicios'] ?? '',
+      rrRoles: json['rr_roles'] ?? '',
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'rr_administradoresid': rrAdministradoresId,
+      'rr_nombre': rrNombre,
+      'rr_apellido': rrApellido,
+      'rr_domicilio': rrDomicilio,
+      'rr_telefono': rrTelefono,
+      'rr_correoelectronico': rrCorreoElectronico,
+      'rr_user': rrUser,
+      'rr_password': rrPassword,
       'rr_imagedecode': rrImageDecode,
       'rr_servicios': rrServicios,
       'rr_roles': rrRoles,

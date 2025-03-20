@@ -12,12 +12,31 @@ class RamiRedService {
     try {
       Administradores? object;
       final response = await http.get(
-        Uri.parse('$apiUrl/sabbat/getAdministrador?user=$user&password=$password'),
+        Uri.parse('$apiUrl/auth/getAdministrador?user=$user&password=$password'),
         headers: {'Content-Type': 'application/json; charset=UTF-8'},
       );
       if (response.statusCode == 200) {
         final result = jsonDecode(response.body);
         object = Administradores.fromJson(result);
+      }
+      return object;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+    Future<postAdministradores?> saveUser(postAdministradores data) async {
+    try {
+      postAdministradores? object;
+      final response = await http.post(Uri.parse('$apiUrl/auth/registerAdministrador'),
+          body: jsonEncode(data.toJson()),
+          headers: {
+            "Content-Type": "application/json", 
+            "Accept": "application/json"
+          },);
+      if (response.statusCode == 200) {
+        final result = jsonDecode(response.body);
+        object = postAdministradores.fromJson(result);
       }
       return object;
     } catch (e) {

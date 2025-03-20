@@ -68,7 +68,6 @@ flutter:
 
   assets:
     - assets/Banner1.png
-    - assets/Banner2.png
     - assets/BannerDown.png
     - assets/whatsapp.png
 
