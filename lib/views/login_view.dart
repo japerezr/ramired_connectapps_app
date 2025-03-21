@@ -91,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
       builder: (BuildContext context) {
         return FractionallySizedBox(
-          heightFactor: 0.6,
+          heightFactor: 0.75,
           child: RegistroComponent(),
         );
       },

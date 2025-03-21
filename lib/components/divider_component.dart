@@ -25,7 +25,7 @@ class DividerComponent extends StatelessWidget {
               style: const TextStyle(
                   color: Colors.grey,
                   fontWeight: FontWeight.bold,
-                  fontSize: 10),
+                  fontSize: 12),
             ),
           ),
           const Expanded(
