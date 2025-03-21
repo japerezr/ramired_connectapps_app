@@ -105,7 +105,7 @@ Widget build(BuildContext context) {
     backgroundColor: const Color.fromARGB(255, 0, 0, 0),
     body: Column(
       children: [
-        const SizedBox(height: 30),
+        const SizedBox(height: 50),
         SizedBox(
           width: double.infinity,
           height: MediaQuery.of(context).size.height * 0.2,
@@ -117,7 +117,7 @@ Widget build(BuildContext context) {
             ),
           ),
         ),
-        const SizedBox(height: 75),
+        const SizedBox(height: 50),
         Expanded(
           child: Container(
             width: double.infinity,
