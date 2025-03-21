@@ -57,12 +57,48 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black, // Fondo negro
-      body: Center(
-        child: Image.asset(
-          'assets/banner.png', // Ruta del icono (debe estar en assets)
-          width: 150, // Tamaño del icono
-          height: 150,
-        ),
+      body: Column(
+        children: [
+          Spacer(),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/icon.png', // Ruta del icono (debe estar en assets)
+                  width: 150, // Tamaño del icono
+                  height: 150,
+                ),
+                SizedBox(height: 20),
+                CircularProgressIndicator( // Icono de carga en blanco
+                  color: Colors.white,
+                ),
+              ],
+            ),
+          ),
+          Spacer(),
+          Center(
+            child: Row(
+              mainAxisSize: MainAxisSize.min, // Ajusta al contenido
+              children: [
+                Text(
+                  'Powered by',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(width: 10), // Ajusta este valor para reducir el espacio
+                Image.asset(
+                  'assets/banner.png',
+                  width: 100,
+                  height: 50,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
