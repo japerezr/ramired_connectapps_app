@@ -44,6 +44,7 @@ class _RegistroComponentState extends State<RegistroComponent> {
   postAdministradores? data;
   String textSave = "";
   String textTitle = "";
+  String id = "";
 
   @override
   void initState() {
@@ -58,6 +59,8 @@ class _RegistroComponentState extends State<RegistroComponent> {
 
   Future<void> initUser() async {
     try {
+      var uuid = Uuid();
+      String guid = uuid.v4();
       if(widget.users != null){
       _controllerNombre.text = widget.users!.rrNombre;
       _controllerApellido.text = widget.users!.rrApellido;
@@ -69,9 +72,11 @@ class _RegistroComponentState extends State<RegistroComponent> {
       imageBytes = base64Decode(widget.users!.rrImageDecode!);
       textSave = "Actualizar";
       textTitle = "EDITAR USUARIO";
+      id = widget.users!.rrAdministradoresId!;
       }else{
       textSave = "Guardar";
       textTitle = "REGISTRAR USUARIO";
+      id = guid;
       }
     } catch (ex) {
       print('X Error en initUser: $ex');
@@ -459,11 +464,8 @@ Widget build(BuildContext context) {
       _isLoading = true;
     });
 
-    var uuid = Uuid();
-    String guid = uuid.v4();
-
     data = postAdministradores(
-        rrAdministradoresId: guid,
+        rrAdministradoresId: id,
         rrNombre: _controllerNombre.text,
         rrApellido: _controllerApellido.text,
         rrDomicilio: _controllerDomicilio.text,
@@ -473,7 +475,7 @@ Widget build(BuildContext context) {
         rrPassword: _controllerPassword.text,
         rrImageDecode: imageBase64,
         rrServicios: "ALL",
-        rrRoles: "Usuario" 
+        rrRoles: "Administrador" 
     );
 
     final result = await RamiRedService().saveUser(data!);
