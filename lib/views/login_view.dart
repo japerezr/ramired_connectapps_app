@@ -255,7 +255,7 @@ Widget build(BuildContext context) {
                   const SizedBox(height: 10),
                   RichText(
                     text: TextSpan(
-                      text: '¿Olvidaste tu contraseña? ',
+                      text: '¿Estas teniendo problemas? ',
                       style: TextStyle(color: Colors.black, fontSize: 14),
                       children: [
                         TextSpan(
