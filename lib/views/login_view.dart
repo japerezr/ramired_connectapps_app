@@ -20,6 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
   Administradores? user;
+  bool _isPasswordVisible = false;
   String whatsappNumber = Environment().WHATSAPP_NUMBER;
   String facebookUrl = Environment().FACEBOOK_URL;
 
@@ -160,13 +161,21 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         const SizedBox(height: 5),
                         TextField(
-                          controller: _passwordController,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            prefixIcon: Icon(Icons.lock),
-                          ),
-                        ),
+                              controller: _passwordController,
+                              obscureText: !_isPasswordVisible,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                prefixIcon: Icon(Icons.lock),
+                                suffixIcon: IconButton(
+                                  icon: Icon(_isPasswordVisible ? Icons.visibility : Icons.visibility_off),
+                                  onPressed: () {
+                                    setState(() {
+                                      _isPasswordVisible = !_isPasswordVisible;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ),
                         const SizedBox(height: 30),
                         SizedBox(
                           width: double.infinity,

@@ -141,7 +141,7 @@ Widget build(BuildContext context) {
                 children: [
                   Flexible(
                     child: Text(
-                      'Registrar Usuario',
+                      'Usuario',
                       style: const TextStyle(
                           fontSize: 16, fontWeight: FontWeight.bold),
                       overflow: TextOverflow.ellipsis,
