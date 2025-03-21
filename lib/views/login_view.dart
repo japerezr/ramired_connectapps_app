@@ -105,16 +105,19 @@ class _LoginPageState extends State<LoginPage> {
         children: [
           Column(
             children: [
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               SizedBox(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * 0.2,
-                child: Image.asset(
-                  'assets/banner.png', // Reemplaza con la imagen que tengas en assets
-                  fit: BoxFit.cover,
+                child: Container(
+                  padding: const EdgeInsets.all(8.0), // Reduce el tamaño de la imagen
+                  child: Image.asset(
+                    'assets/banner.png',
+                    fit: BoxFit.contain, // Evita que la imagen se expanda al máximo
+                  ),
                 ),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Card(
@@ -129,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          'Iniciar Sesión',
+                          'INICIAR SESIÓN',
                           style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
@@ -176,7 +179,7 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               ),
                             ),
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 20),
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
@@ -221,9 +224,9 @@ class _LoginPageState extends State<LoginPage> {
                                 : const Text('Registrarse'),
                           ),
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 5),
                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min, 
                           children: [
                             IconButton(
                               icon: Icon(Icons.facebook, color: Colors.blue, size: 40),
@@ -231,7 +234,7 @@ class _LoginPageState extends State<LoginPage> {
                                 _launchUrlF();
                               },
                             ),
-                            const SizedBox(width: 20),
+                            const SizedBox(width: 10),
                             IconButton(
                               icon: Image.asset('assets/whatsapp.png', width: 40, height: 40),
                               onPressed: () {
