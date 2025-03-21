@@ -293,7 +293,7 @@ Widget build(BuildContext context) {
           const SizedBox(height: 20),
           DividerComponent(text: "Datos Personales"),
           const SizedBox(height: 20),
-            TextField(
+          TextField(
             controller: _controllerNombre,
             decoration: InputDecoration(
               labelText: 'Nombre',
@@ -311,7 +311,7 @@ Widget build(BuildContext context) {
             style: TextStyle(color: Colors.black), // Texto negro
             onChanged: (value) => _validateInput(),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           TextField(
             controller: _controllerApellido,
             decoration: InputDecoration(
@@ -330,7 +330,7 @@ Widget build(BuildContext context) {
             style: TextStyle(color: Colors.black), // Texto negro
             onChanged: (value) => _validateInput(),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           TextField(
             controller: _controllerDomicilio,
             decoration: InputDecoration(
@@ -375,7 +375,7 @@ Widget build(BuildContext context) {
               LengthLimitingTextInputFormatter(10), // Limita a 10 dígitos
             ],
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           TextField(
             controller: _controllerEmail,
             decoration: InputDecoration(
@@ -415,7 +415,7 @@ Widget build(BuildContext context) {
             style: TextStyle(color: Colors.black), // Texto negro
             onChanged: (value) => _validateInput(),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           TextField(
             controller: _controllerPassword,
             obscureText: !_isPasswordVisible,
