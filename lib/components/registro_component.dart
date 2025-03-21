@@ -10,9 +10,10 @@ import 'package:uuid/uuid.dart';
 import 'dart:convert';
 
 class RegistroComponent extends StatefulWidget {
-
+  final Administradores? users;
   const RegistroComponent({
     Key? key,
+    this.users
   }) : super(key: key);
 
   @override
@@ -41,6 +42,32 @@ class _RegistroComponentState extends State<RegistroComponent> {
   Uint8List? imageBytes;
   bool _isLoading = false;
   postAdministradores? data;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero, () async {
+      if (mounted) {
+        await initUser();
+        setState(() {});
+      }
+    });
+  }
+
+  Future<void> initUser() async {
+    try {
+      _controllerNombre.text = widget.users!.rrNombre ?? '';
+      _controllerApellido.text = widget.users!.rrApellido ?? '';
+      _controllerDomicilio.text = widget.users!.rrDomicilio ?? '';
+      _controllerTelefono.text = widget.users!.rrTelefono ?? '';
+      _controllerEmail.text = widget.users!.rrCorreoElectronico ?? '';
+      _controllerUser.text = widget.users!.rrUser ?? '';
+      _controllerPassword.text = widget.users!.rrPassword ?? '';
+      imageBytes = base64Decode(widget.users!.rrImageDecode!);
+    } catch (ex) {
+      print('X Error en initUser: $ex');
+    }
+  }
 
   void _validateInput() {
     setState(() {

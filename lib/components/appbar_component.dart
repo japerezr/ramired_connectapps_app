@@ -50,24 +50,6 @@ class _AppbarState extends State<Appbar> {
     }
   }
 
-    Future<void> onRegistered(BuildContext context) async {
-    await showModalBottomSheet<bool>(
-      context: context,
-      isScrollControlled: true,
-      enableDrag: false, // Deshabilita el cierre por deslizamiento
-      isDismissible: false, // Evita que se cierre tocando fuera del modal
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-      ),
-      builder: (BuildContext context) {
-        return FractionallySizedBox(
-          child: RegistroComponent(),
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -99,7 +81,7 @@ class _AppbarState extends State<Appbar> {
               padding: const EdgeInsets.all(0),
               onPressed: widget.isDialog
                   ? () {
-                      _showColaboradorDialog(context);
+                      onRegistered(context);
                     }
                   : null,
               child: imageBytes != null
@@ -117,6 +99,24 @@ class _AppbarState extends State<Appbar> {
           ),
         ),
       ],
+    );
+  }
+
+  Future<void> onRegistered(BuildContext context) async {
+    await showModalBottomSheet<bool>(
+      context: context,
+      isScrollControlled: true,
+      enableDrag: false, // Deshabilita el cierre por deslizamiento
+      isDismissible: false, // Evita que se cierre tocando fuera del modal
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+      ),
+      builder: (BuildContext context) {
+        return FractionallySizedBox(
+          child: RegistroComponent(users: user),
+        );
+      },
     );
   }
 
