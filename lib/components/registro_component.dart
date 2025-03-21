@@ -252,7 +252,8 @@ Widget build(BuildContext context) {
         Align(
           alignment: Alignment.bottomCenter,
           child: Card(
-            margin: const EdgeInsets.all(0),
+                margin: EdgeInsets.zero,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
             child: Padding(
               padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
               child: SizedBox(

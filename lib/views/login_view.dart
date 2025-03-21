@@ -238,12 +238,12 @@ Widget build(BuildContext context) {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(
-                        icon: Icon(Icons.facebook, color: Colors.blue, size: 60),
+                        icon: Icon(Icons.facebook, color: Colors.blue, size: 50),
                         onPressed: _launchUrlF,
                       ),
                       const SizedBox(width: 10),
                       IconButton(
-                        icon: Image.asset('assets/whatsapp.png', width: 60, height: 60),
+                        icon: Image.asset('assets/whatsapp.png', width: 50, height: 50),
                         onPressed: _launchUrlW,
                       ),
                     ],
