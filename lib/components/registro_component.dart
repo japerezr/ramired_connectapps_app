@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ramired_connectapps_app/models/administradores.dart';
+import '../../models/administradores.dart';
 import '../../components/_components.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../services/_services.dart';
