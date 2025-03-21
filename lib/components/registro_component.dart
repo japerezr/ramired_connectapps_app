@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import '../../services/_services.dart';
 import 'package:uuid/uuid.dart';
 import 'dart:convert';
+import '../helpers/_helpers.dart';
 
 class RegistroComponent extends StatefulWidget {
   final Administradores? users;
@@ -45,6 +46,7 @@ class _RegistroComponentState extends State<RegistroComponent> {
   String textSave = "";
   String textTitle = "";
   String id = "";
+  Administradores? user;
 
   @override
   void initState() {
@@ -230,7 +232,6 @@ Widget build(BuildContext context) {
     ),
   );
 }
-
 
   Widget form() {
     return Padding(
@@ -483,6 +484,13 @@ Widget build(BuildContext context) {
 
     final result = await RamiRedService().saveUser(data!);
       if (result != null) {
+        if(widget.users! != null){
+          await PreferencesHelper.remove('user');
+          user = await RamiRedService().loginAdministrador(_controllerUser.text, _controllerPassword.text);
+          setState(() {
+            PreferencesHelper.setString('user', jsonEncode(user?.toJson()));
+          });
+        }
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         backgroundColor: Colors.black,
         duration: Duration(seconds: 3),
