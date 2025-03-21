@@ -42,6 +42,8 @@ class _RegistroComponentState extends State<RegistroComponent> {
   Uint8List? imageBytes;
   bool _isLoading = false;
   postAdministradores? data;
+  String textSave = "";
+  String textTitle = "";
 
   @override
   void initState() {
@@ -56,14 +58,21 @@ class _RegistroComponentState extends State<RegistroComponent> {
 
   Future<void> initUser() async {
     try {
-      _controllerNombre.text = widget.users!.rrNombre ?? '';
-      _controllerApellido.text = widget.users!.rrApellido ?? '';
-      _controllerDomicilio.text = widget.users!.rrDomicilio ?? '';
-      _controllerTelefono.text = widget.users!.rrTelefono ?? '';
-      _controllerEmail.text = widget.users!.rrCorreoElectronico ?? '';
-      _controllerUser.text = widget.users!.rrUser ?? '';
-      _controllerPassword.text = widget.users!.rrPassword ?? '';
+      if(widget.users != null){
+      _controllerNombre.text = widget.users!.rrNombre;
+      _controllerApellido.text = widget.users!.rrApellido;
+      _controllerDomicilio.text = widget.users!.rrDomicilio;
+      _controllerTelefono.text = widget.users!.rrTelefono;
+      _controllerEmail.text = widget.users!.rrCorreoElectronico;
+      _controllerUser.text = widget.users!.rrUser;
+      _controllerPassword.text = widget.users!.rrPassword;
       imageBytes = base64Decode(widget.users!.rrImageDecode!);
+      textSave = "Actualizar";
+      textTitle = "EDITAR USUARIO";
+      }else{
+      textSave = "Guardar";
+      textTitle = "REGISTRAR USUARIO";
+      }
     } catch (ex) {
       print('X Error en initUser: $ex');
     }
@@ -141,7 +150,7 @@ Widget build(BuildContext context) {
                 children: [
                   Flexible(
                     child: Text(
-                      'Usuario',
+                      textTitle,
                       style: const TextStyle(
                           fontSize: 16, fontWeight: FontWeight.bold),
                       overflow: TextOverflow.ellipsis,
@@ -203,7 +212,7 @@ Widget build(BuildContext context) {
                             strokeWidth: 2,
                           ),
                         )
-                      : const Text('Guardar'),
+                      : Text(textSave),
                 ),
               ),
             ),
@@ -340,12 +349,12 @@ Widget build(BuildContext context) {
                             ),
                           ),
                           Positioned(
-                            top: -2,
-                            right: -2,
+                            top: 0,
+                            right: 0,
                             child: GestureDetector(
                               onTap: _clearImage,
                               child: Container(
-                                padding: const EdgeInsets.all(4),
+                                padding: const EdgeInsets.all(2),
                                 decoration: BoxDecoration(
                                   color: Colors.red,
                                   shape: BoxShape.circle,
