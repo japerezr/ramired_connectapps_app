@@ -9,6 +9,7 @@ import '../../services/_services.dart';
 import 'package:uuid/uuid.dart';
 import 'dart:convert';
 import '../helpers/_helpers.dart';
+import '../env.dart';
 
 class RegistroComponent extends StatefulWidget {
   final Administradores? users;
@@ -24,6 +25,8 @@ class RegistroComponent extends StatefulWidget {
 
 class _RegistroComponentState extends State<RegistroComponent> {
   final _formKey = GlobalKey<FormState>();
+  String serviceName = Environment().SERVICE_NAME;
+  String rolName = Environment().ROL_NAME;
   final TextEditingController _controllerNombre = TextEditingController();
   final TextEditingController _controllerApellido = TextEditingController();
   final TextEditingController _controllerDomicilio = TextEditingController();
@@ -478,8 +481,8 @@ Widget build(BuildContext context) {
         rrUser: _controllerUser.text,
         rrPassword: _controllerPassword.text,
         rrImageDecode: imageBase64,
-        rrServicios: "ALL",
-        rrRoles: "Administrador" 
+        rrServicios: serviceName,
+        rrRoles: rolName
     );
 
     final result = await RamiRedService().saveUser(data!);

@@ -9,9 +9,9 @@ class Environment {
   //Production
   // final API = "https://bconnect-auth-api.azurewebsites.net";
 
-  final SERVICE_ID = "z593c9c6-b79f-4bf0-8ba2-fdb0a5345643"; //encuestas
-  final SERVICE_NAME = "Encuestas";
-  final WHATSAPP_NUMBER = "15165185350";
+  final ROL_NAME = "Administrador";
+  final SERVICE_NAME = "ALL";
+  final WHATSAPP_NUMBER = "9971250354";
   final FACEBOOK_URL = "https://www.facebook.com/RamiRedInternet";
   
   static final Environment _environment = Environment._internal();
