@@ -98,181 +98,166 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
-      body: Stack(
-        children: [
-          Column(
-            children: [
-              const SizedBox(height: 20),
-              SizedBox(
-                width: double.infinity,
-                height: MediaQuery.of(context).size.height * 0.2,
-                child: Container(
-                  padding: const EdgeInsets.all(8.0), // Reduce el tamaño de la imagen
-                  child: Image.asset(
-                    'assets/banner.png',
-                    fit: BoxFit.contain, // Evita que la imagen se expanda al máximo
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Card(
-                  color: Colors.white,
-                  elevation: 10,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'INICIAR SESIÓN',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Usuario',
-                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                        TextField(
-                          controller: _userController,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            prefixIcon: Icon(Icons.person),
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Contraseña',
-                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                        TextField(
-                              controller: _passwordController,
-                              obscureText: !_isPasswordVisible,
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                prefixIcon: Icon(Icons.lock),
-                                suffixIcon: IconButton(
-                                  icon: Icon(_isPasswordVisible ? Icons.visibility : Icons.visibility_off),
-                                  onPressed: () {
-                                    setState(() {
-                                      _isPasswordVisible = !_isPasswordVisible;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ),
-                        const SizedBox(height: 20),
-                        SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            onPressed: _isLoading ? null : login,
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.black,
-                              foregroundColor: Colors.white,
-                            ),
-                            child: _isLoading
-                                ? SizedBox(
-                                    height: 20,
-                                    width: 20,
-                                    child: CircularProgressIndicator(
-                                      color: Colors.white,
-                                      strokeWidth: 2,
-                                    ),
-                                  )
-                                : const Text('Iniciar'),
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            onPressed: _isLoading
-                            ? null
-                            : () => onRegistered(context),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-                              foregroundColor: Colors.black,
-                              side: BorderSide(color: Colors.black),
-                            ),
-                            child: _isLoading
-                                ? SizedBox(
-                                    height: 20,
-                                    width: 20,
-                                    child: CircularProgressIndicator(
-                                      color: Colors.black,
-                                      strokeWidth: 2,
-                                    ),
-                                  )
-                                : const Text('Registrarse'),
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                       Row(
-                          mainAxisSize: MainAxisSize.min, 
-                          children: [
-                            IconButton(
-                              icon: Icon(Icons.facebook, color: Colors.blue, size: 40),
-                              onPressed: () {
-                                _launchUrlF();
-                              },
-                            ),
-                            const SizedBox(width: 10),
-                            IconButton(
-                              icon: Image.asset('assets/whatsapp.png', width: 40, height: 40),
-                              onPressed: () {
-                                _launchUrlW();
-                              },
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Positioned(
-            bottom: -75,
-            left: 0,
-            right: 0,
-            child: SizedBox(
-            width: double.infinity,
-            height: MediaQuery.of(context).size.height * 0.4,
-            child: ClipRect(
-              child: Transform.scale(
-                scaleY: 0.6,
-                child: Image.asset(
-                  'assets/bannerDown.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+    body: Column(
+      children: [
+        const SizedBox(height: 30),
+        SizedBox(
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height * 0.2,
+          child: Container(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(
+              'assets/banner.png',
+              fit: BoxFit.contain,
             ),
           ),
-          ),
-        ],
-      ),
-    );
-  }
+        ),
+        const SizedBox(height: 75),
+        Expanded(
+          child: Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
+              ),
+            ),
+            padding: const EdgeInsets.only(left:20, right:20, top: 20, bottom: 0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'BIENVENIDOS',
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'Ingrese sus datos a continuación',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.grey
+                    ),
+                  ),
+                  const SizedBox(height: 25),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Usuario',
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  TextField(
+                    controller: _userController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.person),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Contraseña',
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  TextField(
+                    controller: _passwordController,
+                    obscureText: !_isPasswordVisible,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.lock),
+                      suffixIcon: IconButton(
+                        icon: Icon(_isPasswordVisible ? Icons.visibility : Icons.visibility_off),
+                        onPressed: () {
+                          setState(() {
+                            _isPasswordVisible = !_isPasswordVisible;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 25),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 40,
+                    child: ElevatedButton(
+                      onPressed: _isLoading ? null : login,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        foregroundColor: Colors.white,
+                      ),
+                      child: _isLoading
+                          ? SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                                strokeWidth: 2,
+                              ),
+                            )
+                          : const Text('Iniciar'),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 40,
+                    child: ElevatedButton(
+                      onPressed: _isLoading ? null : () => onRegistered(context),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.black,
+                        side: BorderSide(color: Colors.black),
+                      ),
+                      child: _isLoading
+                          ? SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(
+                                color: Colors.black,
+                                strokeWidth: 2,
+                              ),
+                            )
+                          : const Text('Registrarse'),
+                    ),
+                  ),
+                  const SizedBox(height: 25),
+                  DividerComponent(text: "Contactos"),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.facebook, color: Colors.blue, size: 60),
+                        onPressed: _launchUrlF,
+                      ),
+                      const SizedBox(width: 10),
+                      IconButton(
+                        icon: Image.asset('assets/whatsapp.png', width: 60, height: 60),
+                        onPressed: _launchUrlW,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                ],
+              ),
+            ),
+          ),     
+      ],
+    ),
+  );
+}
+
 }
 
 
