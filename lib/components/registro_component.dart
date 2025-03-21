@@ -148,6 +148,53 @@ class _RegistroComponentState extends State<RegistroComponent> {
     });
   }
 
+  void _showResultsDialog() {
+
+    _validateInput();
+
+    if (_errorNombre != null || _errorApellido != null ||
+        _errorDomicilio != null || _errorTelefono != null ||
+        _errorEmail != null || _errorUser != null ||
+        _errorPassword != null) 
+    {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        backgroundColor: Colors.red,
+        duration: Duration(seconds: 3),
+        content: Text("Por favor, complete todos los campos correctamente."),
+      ));
+      return;
+    }
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('AVISO'),
+        content: Text("¿Desea guardar los campos efectuados?"),
+        actions: [
+        Row(
+          mainAxisSize: MainAxisSize.min, 
+          children: [
+              TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('Cancelar', style: TextStyle(color: Colors.white)),
+              style: TextButton.styleFrom(
+              backgroundColor: Colors.red,
+              ),
+              ),
+              const SizedBox(width: 10),
+              TextButton(
+              onPressed: save,
+              child: Text('Aceptar', style: TextStyle(color: Colors.white)),
+              style: TextButton.styleFrom(
+              backgroundColor: Colors.black,
+              ),
+            ),
+          ],
+        ),
+        ],
+      ),
+    );
+  }
+
 @override
 Widget build(BuildContext context) {
   return Scaffold(
@@ -211,7 +258,7 @@ Widget build(BuildContext context) {
               child: SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: _isLoading ? null : save,
+                  onPressed: _isLoading ? null : _showResultsDialog,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
                     foregroundColor: Colors.white,
@@ -443,30 +490,15 @@ Widget build(BuildContext context) {
                   ],
                 ),
               ),
-
         ],
       ),
     );
   }
 
   Future<void> save() async {
-
-    _validateInput();
-
-    if (_errorNombre != null || _errorApellido != null ||
-        _errorDomicilio != null || _errorTelefono != null ||
-        _errorEmail != null || _errorUser != null ||
-        _errorPassword != null) 
-    {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        backgroundColor: Colors.red,
-        duration: Duration(seconds: 3),
-        content: Text("Por favor, complete todos los campos correctamente."),
-      ));
-      return;
-    }
-
     try{
+
+    Navigator.pop(context);
     setState(() {
       _isLoading = true;
     });
