@@ -69,7 +69,10 @@ class _RegistroComponentState extends State<RegistroComponent> {
       _controllerEmail.text = widget.users!.rrCorreoElectronico;
       _controllerUser.text = widget.users!.rrUser;
       _controllerPassword.text = widget.users!.rrPassword;
+      if(widget.users!.rrImageDecode!.isNotEmpty){
       imageBytes = base64Decode(widget.users!.rrImageDecode!);
+      imageBase64 = widget.users!.rrImageDecode!;
+      }
       textSave = "Actualizar";
       textTitle = "EDITAR USUARIO";
       id = widget.users!.rrAdministradoresId!;
