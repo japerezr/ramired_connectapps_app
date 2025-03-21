@@ -7,6 +7,7 @@ import '../../views/_views.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../env.dart';
 import '../../components/_components.dart';
+import 'package:flutter/gestures.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -127,7 +128,8 @@ Widget build(BuildContext context) {
                 topRight: Radius.circular(30),
               ),
             ),
-            padding: const EdgeInsets.only(left:20, right:20, top: 20, bottom: 0),
+            padding: const EdgeInsets.only(left:20, right:20, top: 10, bottom: 0),
+            child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -138,6 +140,8 @@ Widget build(BuildContext context) {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  const Divider(height: 0.5),
+                  const SizedBox(height: 5),
                   Text(
                     'Ingrese sus datos a continuación',
                     style: TextStyle(
@@ -145,7 +149,7 @@ Widget build(BuildContext context) {
                       color: Colors.grey
                     ),
                   ),
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 20),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -186,7 +190,7 @@ Widget build(BuildContext context) {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 20),
                   SizedBox(
                     width: double.infinity,
                     height: 40,
@@ -231,7 +235,7 @@ Widget build(BuildContext context) {
                           : const Text('Registrarse'),
                     ),
                   ),
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 20),
                   DividerComponent(text: "Contactos"),
                   const SizedBox(height: 10),
                   Row(
@@ -248,9 +252,26 @@ Widget build(BuildContext context) {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
+                  RichText(
+                    text: TextSpan(
+                      text: '¿Olvidaste tu contraseña? ',
+                      style: TextStyle(color: Colors.black, fontSize: 14),
+                      children: [
+                        TextSpan(
+                          text: 'Contáctanos',
+                          style: TextStyle(
+                            color: Colors.blue,
+                            decoration: TextDecoration.underline,
+                          ),
+                          recognizer: TapGestureRecognizer()..onTap = _launchUrlW,
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
+            ),
             ),
           ),     
       ],
