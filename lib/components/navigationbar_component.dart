@@ -30,7 +30,7 @@ class _NavigationBarState extends State<NavigationBars> {
         ),
       ],
       currentIndex: widget.selectedNavBarIndex,
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.black,
       selectedItemColor: Colors.white,
       unselectedItemColor: const Color.fromARGB(255, 212, 212, 212),
       showUnselectedLabels: true,

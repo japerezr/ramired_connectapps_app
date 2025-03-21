@@ -234,13 +234,22 @@ Widget build(BuildContext context) {
           const SizedBox(height: 20),
           DividerComponent(text: "Datos Personales"),
           const SizedBox(height: 20),
-          TextField(
+            TextField(
             controller: _controllerNombre,
             decoration: InputDecoration(
               labelText: 'Nombre',
-              border: OutlineInputBorder(),
+              border: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black), // Borde negro
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black), // Borde al enfocar
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black), // Borde habilitado
+              ),
               errorText: _errorNombre,
             ),
+            style: TextStyle(color: Colors.black), // Texto negro
             onChanged: (value) => _validateInput(),
           ),
           const SizedBox(height: 20),
@@ -248,9 +257,18 @@ Widget build(BuildContext context) {
             controller: _controllerApellido,
             decoration: InputDecoration(
               labelText: 'Apellido',
-              border: OutlineInputBorder(),
+              border: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black), // Borde negro
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black), // Borde al enfocar
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black), // Borde habilitado
+              ),
               errorText: _errorApellido,
             ),
+            style: TextStyle(color: Colors.black), // Texto negro
             onChanged: (value) => _validateInput(),
           ),
           const SizedBox(height: 20),
@@ -258,9 +276,18 @@ Widget build(BuildContext context) {
             controller: _controllerDomicilio,
             decoration: InputDecoration(
               labelText: 'Domicilio',
-              border: OutlineInputBorder(),
+              border: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black), // Borde negro
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black), // Borde al enfocar
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black), // Borde habilitado
+              ),
               errorText: _errorDomicilio,
             ),
+            style: TextStyle(color: Colors.black), // Texto negro
             onChanged: (value) => _validateInput(),
           ),
           const SizedBox(height: 20),
@@ -270,9 +297,18 @@ Widget build(BuildContext context) {
             controller: _controllerTelefono,
             decoration: InputDecoration(
               labelText: 'Teléfono',
-              border: OutlineInputBorder(),
+              border: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black), // Borde negro
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black), // Borde al enfocar
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black), // Borde habilitado
+              ),
               errorText: _errorTelefono,
             ),
+            style: TextStyle(color: Colors.black), // Texto negro
             onChanged: (value) => _validateInput(),
             keyboardType: TextInputType.phone, // Solo acepta números
             inputFormatters: [
@@ -285,9 +321,18 @@ Widget build(BuildContext context) {
             controller: _controllerEmail,
             decoration: InputDecoration(
               labelText: 'Correo Electronico',
-              border: OutlineInputBorder(),
+              border: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black), // Borde negro
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black), // Borde al enfocar
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black), // Borde habilitado
+              ),
               errorText: _errorEmail,
             ),
+            style: TextStyle(color: Colors.black), // Texto negro
             onChanged: (value) => _validateInput(),
           ),
           const SizedBox(height: 20),
@@ -297,9 +342,18 @@ Widget build(BuildContext context) {
             controller: _controllerUser,
             decoration: InputDecoration(
               labelText: 'Usuario',
-              border: OutlineInputBorder(),
+              border: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black), // Borde negro
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black), // Borde al enfocar
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black), // Borde habilitado
+              ),
               errorText: _errorUser,
             ),
+            style: TextStyle(color: Colors.black), // Texto negro
             onChanged: (value) => _validateInput(),
           ),
           const SizedBox(height: 20),
@@ -308,7 +362,15 @@ Widget build(BuildContext context) {
             obscureText: !_isPasswordVisible,
             decoration: InputDecoration(
               labelText: 'Contraseña',
-              border: OutlineInputBorder(),
+              border: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black), // Borde negro
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black), // Borde al enfocar
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black), // Borde habilitado
+              ),
               errorText: _errorPassword, // Asigna el error aquí
               suffixIcon: IconButton(
                 icon: Icon(_isPasswordVisible ? Icons.visibility : Icons.visibility_off),
@@ -319,6 +381,7 @@ Widget build(BuildContext context) {
                 },
               ),
             ),
+            style: TextStyle(color: Colors.black), // Texto negro
             onChanged: (value) => _validateInput(),
           ),
           const SizedBox(height: 20),

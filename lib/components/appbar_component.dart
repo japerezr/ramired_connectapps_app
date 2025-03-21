@@ -53,10 +53,10 @@ class _AppbarState extends State<Appbar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.black,
       shadowColor: Colors.black,
       title: const Text(
-        "NOVEL'S - CABINA & SPA",
+        "RamiRed - Systems",
         style: TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,

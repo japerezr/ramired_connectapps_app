@@ -51,9 +51,7 @@ class _HomePageState extends State<HomePage> {
         isDialog: true,
       ),
       body: Center(
-        child: imageBytes != null
-            ? Image.memory(imageBytes!) // Mostrar imagen decodificada
-            : const CircularProgressIndicator(), // Muestra un loader mientras se carga la imagen
+        
       ),
       bottomNavigationBar: const NavigationBars(0),
     );
