@@ -11,7 +11,7 @@ class Environment {
 
   final ROL_NAME = "Administrador";
   final SERVICE_NAME = "ALL";
-  final WHATSAPP_NUMBER = "9971250354";
+  final WHATSAPP_NUMBER = "5219971250354";
   final FACEBOOK_URL = "https://www.facebook.com/RamiRedInternet";
   
   static final Environment _environment = Environment._internal();
