@@ -483,7 +483,7 @@ Widget build(BuildContext context) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         backgroundColor: Colors.black,
         duration: Duration(seconds: 3),
-        content: Text("Registrando Usuario...")));
+        content: Text("Registrando...")));
         Navigator.pop(context);
         setState(() {
           _isLoading = false;
