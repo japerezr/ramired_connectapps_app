@@ -43,11 +43,19 @@ dependencies:
   share_plus: ^7.2.1
   flutter_easyloading: ^3.0.5
   url_launcher: ^6.1.10
+  flutter_native_splash: ^2.4.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: ^0.13.1  # Asegúrate de que esté dentro de dev_dependencies
+  
+flutter_native_splash:
+  color: "#000000"  # Negro
+  image: assets/icon.png  # Reemplaza con la ruta de tu logo (opcional)
+  android_12:
+    color: "#000000"  # Para Android 12+
+    image: assets/icon.png  # Imagen para Android 12+
 
 flutter_icons:
   android: true
