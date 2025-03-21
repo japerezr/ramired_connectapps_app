@@ -110,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * 0.2,
                 child: Image.asset(
-                  'assets/Banner1.png', // Reemplaza con la imagen que tengas en assets
+                  'assets/banner.png', // Reemplaza con la imagen que tengas en assets
                   fit: BoxFit.cover,
                 ),
               ),
@@ -221,7 +221,7 @@ class _LoginPageState extends State<LoginPage> {
                                 : const Text('Registrarse'),
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 10),
                        Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -258,7 +258,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Transform.scale(
                 scaleY: 0.6,
                 child: Image.asset(
-                  'assets/BannerDown.png',
+                  'assets/bannerDown.png',
                   fit: BoxFit.cover,
                 ),
               ),
