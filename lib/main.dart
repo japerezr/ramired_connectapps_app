@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _navigateToHome() async {
-    await Future.delayed(const Duration(seconds: 3)); // Espera 3 segundos
+    await Future.delayed(const Duration(seconds: 2)); // Espera 3 segundos
     Widget? nextPage = await initApp();
     if (mounted) {
       Navigator.pushReplacement(
