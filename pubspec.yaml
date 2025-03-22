@@ -55,7 +55,7 @@ flutter_native_splash:
   image: assets/icon.png  # Reemplaza con la ruta de tu logo (opcional)
   android_12:
     color: "#000000"  # Para Android 12+
-    image: assets/icon.png # Imagen para Android 12+
+    image: assets/splash.png # Imagen para Android 12+
     fullscreen: false  # No ocupa toda la pantalla  
 
 flutter_icons:
