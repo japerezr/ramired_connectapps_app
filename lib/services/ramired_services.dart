@@ -37,7 +37,7 @@ class RamiRedService {
           "Accept": "application/json"
         },
       );
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 204) {
           final String responseBody = response.body;
           object = responseBody;
       }
